@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
 
-feedback_channel_id=1229795445245743154
+feedback_channel_id=YOUR_CHANNEL_ID
 
 class Feedback(commands.Cog):
     def __init__(self, bot):
