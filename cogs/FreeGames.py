@@ -13,7 +13,7 @@ class FreeGames(commands.Cog):
         self.bot = bot
         self.epic_endpoint = "https://store-site-backend-static.ak.epicgames.com/freeGamesPromotions?locale=es-ES&country=ES&allowCountries=ES"
         self.known_free_games = self.load_known_games()
-        self.channel_id = 1229756652975165522
+        self.channel_id = YOUR_CHANNEL_ID
         self.fixed_urls = {"Thief": "https://store.epicgames.com/en-US/p/thief-5bb95f"}
         self.check_new_games.start()
 
@@ -22,11 +22,11 @@ class FreeGames(commands.Cog):
 
     @commands.command()
     @commands.has_permissions(administrator=True)
-    async def now(self, ctx):
+    async def PostCurrentFreeGames(self, ctx):
         games = self.fetch_epic_free_games()
         await self.send_free_games(ctx.channel, games, check_known=False)
 
-    @now.error
+    @PostCurrentFreeGames.error
     async def error(self, ctx, error):
         if isinstance(error, commands.MissingPermissions):
             print("No permissions to run this command.")
