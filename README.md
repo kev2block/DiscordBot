@@ -1,4 +1,4 @@
-[![discord](https://img.shields.io/badge/contact-me-blue?logo=discord&logoColor=white)](https://discordapp.com/users/499240258114682900)
+[![discord](https://img.shields.io/badge/Discord-purple?logo=discord&logoColor=white)](https://discordapp.com/users/499240258114682900)
 ![Python Versions](https://img.shields.io/badge/python-3.10%20|%203.11%20|%203.12-blue)
 ![License](https://img.shields.io/badge/license-MIT-blue)
 ![Status](https://img.shields.io/badge/status-finished-green)
