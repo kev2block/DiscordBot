@@ -14,10 +14,10 @@
    - Replace `"GUILD_ID"` with your Discord server ID.
 
 2. **Feedback Channel Setup**
-   - In the **Feedback.py** script, replace `"feedback_channel_id"` with the ID of the channel where feedback should be sent.
+   - In the **Feedback.py** script, replace `"YOUR_CHANNEL_ID"` with the ID of the channel where feedback should be sent.
 
 3. **Free Games Channel Setup**
-   - In the **FreeGames.py** script, replace `"self.channel_id"` with the ID of the channel where free game notifications should be sent.
+   - In the **FreeGames.py** script, replace `"YOUR_CHANNEL_ID"` with the ID of the channel where free game notifications should be sent.
 
 4. **Moderation Log Channel**
    - In the **Moderation.py** script, replace `"LOG_CHANNEL_ID"` and `"self.LOG_CHANNEL_ID"` with the ID of your log channel.
