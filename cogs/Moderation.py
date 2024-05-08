@@ -99,7 +99,7 @@ class AdminResponseModal(discord.ui.Modal):
 
 
 class Moderation(commands.Cog):
-    LOG_CHANNEL_ID = REPLACE_WITH_ID
+    LOG_CHANNEL_ID = LOG_CHANNEL_ID
     RAPID_MESSAGE_THRESHOLD = 7
     RAPID_TIME_FRAME = 10
     REPEAT_MESSAGE_THRESHOLD = 5
@@ -111,7 +111,7 @@ class Moderation(commands.Cog):
         self.message_contents = defaultdict(lambda: defaultdict(int))
         self.warnings = load_warnings()
         self.last_warned = defaultdict(lambda: datetime.min)
-        self.LOG_CHANNEL_ID = REPLACE_WITH_ID
+        self.LOG_CHANNEL_ID = LOG_CHANNEL_ID
 
     async def log_unban_request(self, user):
         admin_channel = self.bot.get_channel(self.LOG_CHANNEL_ID)
@@ -262,38 +262,46 @@ class Moderation(commands.Cog):
         embed = discord.Embed(title="Unban", description=f'{user.display_name} got unbanned.')
         await log_channel.send(embed=embed)
 
-
-
     @commands.slash_command(name="warn", description="Warn a user.")
     @commands.has_permissions(moderate_members=True)
     async def warn(self, ctx, member: discord.Member, reason="No reason provided", remove: bool = False):
         if remove:
-            if str(member.id) in self.warnings and self.warnings[str(member.id)] > 0:
-                self.warnings[str(member.id)] -= 1
+            if str(member.id) in self.warnings and self.warnings[str(member.id)]['count'] > 0:
+                self.warnings[str(member.id)]['count'] -= 1
                 save_warnings(self.warnings)
-                await ctx.respond(f"Removed a warning from {member.display_name}. Total warnings now: {self.warnings[str(member.id)]}", ephemeral=True)
+                await ctx.respond(
+                    f"Removed a warning from {member.display_name}. Total warnings now: {self.warnings[str(member.id)]['count']}",
+                    ephemeral=True)
             else:
                 await ctx.respond(f"{member.display_name} has no warnings to remove.", ephemeral=True)
             return
 
         if str(member.id) not in self.warnings:
-            self.warnings[str(member.id)] = 0
-        self.warnings[str(member.id)] += 1
+            self.warnings[str(member.id)] = {'count': 0, 'last_handled': datetime.min.isoformat()}
+        self.warnings[str(member.id)]['count'] += 1
         save_warnings(self.warnings)
 
-        embed = discord.Embed(title="Warning", description=f"You have been warned.\n**Reason**: {reason}\n**Total Warnings**: {self.warnings[str(member.id)]}")
-        if self.warnings[str(member.id)] == 2:
+        embed = discord.Embed(title="Warning",
+                              description=f"You have been warned.\n**Reason**: {reason}\n**Total Warnings**: {self.warnings[str(member.id)]['count']}", color=discord.Color.red())
+        view = None
+        if self.warnings[str(member.id)]['count'] == 2:
             embed.add_field(name="Warning", value="If you get one more warn, you will be suspended for 3 days.")
-        await member.send(embed=embed)
-
-        if self.warnings[str(member.id)] >= 3:
-            await member.edit(communication_disabled_until=datetime.utcnow() + timedelta(days=3))
-            await ctx.respond(f"{member.display_name} has been suspended for 3 days due to repeated infractions.", ephemeral=True)
-            self.warnings[str(member.id)] = 0
+        if self.warnings[str(member.id)]['count'] >= 3:
+            # User is suspended, create a view for unban request
+            embed.add_field(name="Suspended",
+                            value="You have been suspended for 3 days. You can request an unban if you believe this is a mistake.")
+            view = UnbanRequestView(member.id)
+            self.warnings[str(member.id)]['count'] = 0  # Reset warnings after suspension
             save_warnings(self.warnings)
+            await member.edit(communication_disabled_until=datetime.utcnow() + timedelta(days=3))
+            await member.send(embed=embed, view=view)
+            await ctx.respond(f"{member.display_name} has been suspended for 3 days due to repeated infractions.",
+                              ephemeral=True)
         else:
-            await ctx.respond(f"{member.display_name} has been warned for: {reason}. Total warnings: {self.warnings[str(member.id)]}", ephemeral=True)
-
+            await member.send(embed=embed)
+            await ctx.respond(
+                f"{member.display_name} has been warned for: {reason}. Total warnings: {self.warnings[str(member.id)]['count']}",
+                ephemeral=True)
 
     @commands.slash_command(name="clearr", description="Clears a specified number of messages from the channel.")
     @commands.has_permissions(manage_messages=True)
@@ -356,29 +364,6 @@ class Moderation(commands.Cog):
         else:
             await ctx.respond("An error occurred while executing the command.", ephemeral=True)
 
-    @commands.slash_command(name="userclear",
-                            description="Clears a specified number of messages from the selected user.")
-    @commands.has_permissions(manage_messages=True)
-    async def userclear(self, ctx, user: discord.Member, amount: int = 5):
-        if amount < 1:
-            await ctx.respond("Amount must be at least 1.", ephemeral=True)
-            return
-
-        await ctx.defer(ephemeral=True)
-
-        counter = 0
-        try:
-            async for message in ctx.channel.history(limit=200):
-                if message.author == user:
-                    await message.delete()
-                    counter += 1
-                    if counter >= amount:
-                        break
-        except Exception as e:
-            await ctx.followup.send(f"An error occurred while deleting messages: {e}", ephemeral=True)
-            return
-
-        await ctx.followup.send(f"Cleared {counter} messages from {user.display_name}.", ephemeral=True)
 
 
 def setup(bot):
