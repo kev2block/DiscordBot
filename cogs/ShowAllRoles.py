@@ -43,6 +43,3 @@ class RoleButton(Button):
 
 def setup(bot):
     bot.add_cog(ShowAllRoles(bot))
-
-
-
