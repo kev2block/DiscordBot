@@ -1,24 +1,47 @@
 # Setup
 
-1. In the "**main.py**" script replace "TOKEN" with your Discord bot token.
-2. In the "**main.py**" script replace "GUILD_ID" with your Discord server id.
+## Project Setup Guide
 
-3. In the "**Feedback.py**" script replace "feedback_channel_id" with the Channel, the Feedback gets send in.
-4. In the "**FreeGames.py**" script replace "self.channel_id" with the Channel, the Free Games should be sent in.
-5. In the "**Moderation.py**" script replace "LOG_CHANNEL_ID" and "self.LOG_CHANNEL_ID" with your log channel.
+### Prerequisites
+- Ensure you have Python installed on your system.
+- You'll need a Discord bot token. If you don't have one, create a bot application on the [Discord Developer Portal](https://discord.com/developers/applications).
+- Have the necessary permissions to manage roles and channels on your Discord server.
 
-6. In the "**Notifications.py**" script replace "PUT_ROLE_HERE" with your roles. Also replace: role_id_generalnews, role_id_gameupdates and role_id_socialmedia with your role ids.
+### Configuration Steps
 
-- "role1" should be the same role id as "role_id_generalnews" 
-- "role2" should be the same role id as "role_id_gameupdates" 
-- "role3" should be the same role id as "role_id_socialmedia" 
+1. **Token and Guild ID**
+   - Open the **main.py** script and replace `"TOKEN"` with your Discord bot token.
+   - Replace `"GUILD_ID"` with your Discord server ID.
 
-8. In the "**RolePicker.py**" script change the "role_ids".
-9. For "**SteamGamePreview.py**" you need to get your Steam api key. You can follow this tutorial to get your Steam api key: https://www.youtube.com/watch?v=hBqQh5lyQBw
+2. **Feedback Channel Setup**
+   - In the **Feedback.py** script, replace `"feedback_channel_id"` with the ID of the channel where feedback should be sent.
 
-10. For the "**SupportTicket.py**" script you need to change the "report_channel_id" and the "support_channel_id". You can use the same channel id for both of them if you want to. Also you have to change the "moderator_role_id". This is the role, which gets pinged for support tickets.
+3. **Free Games Channel Setup**
+   - In the **FreeGames.py** script, replace `"self.channel_id"` with the ID of the channel where free game notifications should be sent.
 
-11. In the "**ThreadManager.py**" script, you need to change the "TARGET_CHANNEL_ID".
+4. **Moderation Log Channel**
+   - In the **Moderation.py** script, replace `"LOG_CHANNEL_ID"` and `"self.LOG_CHANNEL_ID"` with the ID of your log channel.
 
-12. In the "**YoutubeAnounce.py**" script, you have to change the "self.discord_channel_id".
-    | Also you need to replace "@name" with your youtube @.
+5. **Notification Roles Setup**
+   - In the **Notifications.py** script, replace `"PUT_ROLE_HERE"` with the corresponding role IDs.
+     - "role1" should match "role_id_generalnews".
+     - "role2" should match "role_id_gameupdates".
+     - "role3" should match "role_id_socialmedia".
+
+6. **Role Picker Configuration**
+   - Modify the "role_ids" in the **RolePicker.py** script to match the roles you want to assign.
+
+7. **Steam API Key**
+   - For the **SteamGamePreview.py** script, obtain your Steam API key. Refer to [this tutorial](https://www.youtube.com/watch?v=hBqQh5lyQBw) for guidance.
+
+8. **Support Ticket Setup**
+   - In the **SupportTicket.py** script, update the `"report_channel_id"`, `"support_channel_id"`, and `"moderator_role_id"` as needed.
+
+9. **Thread Manager Configuration**
+   - Update the `"TARGET_CHANNEL_ID"` in the **ThreadManager.py** script.
+
+10. **YouTube Announcement Setup**
+    - In the **YoutubeAnounce.py** script, replace `"self.discord_channel_id"` with the ID of the Discord channel where YouTube announcements should be made.
+    - Also, replace "@name" with your YouTube handle.
+
+Once all configurations are complete, run the `"main.py"` script. For further assistance, reach out for support on [discord](https://discord.gg/4xwf8F46Pd).
