@@ -19,16 +19,16 @@ class ThreadManager(commands.Cog):
             if not thread_name:
                 thread_name = "Unknown thread"
 
-#            try:
-#                thread = await message.create_thread(name=thread_name, auto_archive_duration=60)
-#                print(f"Thread '{thread.name}' got created.")
+            try:
+                thread = await message.create_thread(name=thread_name, auto_archive_duration=86400)
+                print(f"Thread '{thread.name}' got created.")
 
-#                await asyncio.sleep(86400)
+                await asyncio.sleep(86400)
 
-#                await thread.delete()
-#                print(f"Thread '{thread.name}' got deleted.")
-#            except discord.errors.HTTPException as e:
-#                print(f"Error: {e}")
+                await thread.delete()
+                print(f"Thread '{thread.name}' got deleted.")
+            except discord.errors.HTTPException as e:
+                print(f"Error: {e}")
 
 def setup(bot):
     bot.add_cog(ThreadManager(bot))
