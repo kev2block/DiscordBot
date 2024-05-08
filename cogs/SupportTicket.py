@@ -109,8 +109,8 @@ class ReportUserModal(discord.ui.Modal):
         else:
             await interaction.response.send_message(content="Error 3, Please contact a Admin or Moderator.", ephemeral=True)
 
-report_channel_id = YOUR_CHANNEL_ID
-support_channel_id = YOUR_CHANNEL_ID
+report_channel_id = YOUR_CHANNEL_ID  # Use a channel not visable for normal users
+support_channel_id = YOUR_CHANNEL_ID # Use the channel, where you wrote !support.
 moderator_role_id = YOUR_ROLE_ID
 
 class TicketView(discord.ui.View):
