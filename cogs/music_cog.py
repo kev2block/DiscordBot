@@ -107,8 +107,8 @@ class music_cog(commands.Cog):
         else:
             await ctx.send("No music in queue")
 
-    @commands.slash_command(name="clear", aliases=["c", "bin"], help="Stops the music and clears the queue")
-    async def clear(self, ctx):
+    @commands.slash_command(name="clearq", aliases=["c", "bin"], help="Stops the music and clears the queue")
+    async def clearq(self, ctx):
         await ctx.defer(ephemeral=True)
         if self.vc and self.is_playing:
             self.vc.stop()
