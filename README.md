@@ -1,4 +1,4 @@
-[![discord](https://img.shields.io/badge/Discord-purple?logo=discord&logoColor=white)](https://discordapp.com/users/499240258114682900)
+[![discord](https://img.shields.io/badge/Discord-purple?logo=discord&logoColor=white)](https://discord.gg/4xwf8F46Pd)
 [![Python Versions](https://img.shields.io/badge/python-3.10%20|%203.11%20|%203.12-blue)](https://www.python.org/downloads/)
 [![License](https://img.shields.io/badge/license-MIT-blue)](https://github.com/kev2block/DiscordBot/blob/main/LICENSE)
 ![Status](https://img.shields.io/badge/status-finished-green)
