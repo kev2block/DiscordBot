@@ -10,7 +10,7 @@ class AiHelper(commands.Cog):
 
 
 
-    @commands.slash_command(name="AIChat", description="Ask AI anything.")
+    @commands.slash_command(name="aichat", description="Ask AI anything.")
     async def AIChat(self, ctx, *, query: str):
         await ctx.defer(ephemeral=True)
 
