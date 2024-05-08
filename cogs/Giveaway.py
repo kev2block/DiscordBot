@@ -269,12 +269,6 @@ class Giveaway(commands.Cog):
         await ctx.defer(ephemeral=True)
         await self.setup_giveaway(ctx, time, winners, prize)
 
-    @commands.slash_command(name="giveawayend")
-    @commands.has_permissions(administrator=True)
-    async def end_giveaway_command(self, ctx):
-        await ctx.defer(ephemeral=True)
-        await self.end_giveaway(ctx.channel.last_message_id, 0)
-
     @commands.slash_command(name="giveawayreroll")
     @commands.has_permissions(administrator=True)
     async def reroll_giveaway_command(self, ctx, message_id: str, winners: int):
