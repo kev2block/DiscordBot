@@ -303,9 +303,9 @@ class Moderation(commands.Cog):
                 f"{member.display_name} has been warned for: {reason}. Total warnings: {self.warnings[str(member.id)]['count']}",
                 ephemeral=True)
 
-    @commands.slash_command(name="clearr", description="Clears a specified number of messages from the channel.")
+    @commands.slash_command(name="clear", description="Clears a specified number of messages from the channel.")
     @commands.has_permissions(manage_messages=True)
-    async def clearr(self, ctx, amount: Option(int, "Enter the number of messages to delete", required=True, min_value=1, max_value=10000)):
+    async def clear(self, ctx, amount: Option(int, "Enter the number of messages to delete", required=True, min_value=1, max_value=10000)):
         await ctx.channel.purge(limit=amount + 1)
         await ctx.respond(f"Cleared {amount} messages.", ephemeral=True)
 
