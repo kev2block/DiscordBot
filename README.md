@@ -24,9 +24,9 @@
 
 5. **Notification Roles Setup**
    - In the **Notifications.py** script, replace `"PUT_ROLE_HERE"` with the corresponding role IDs.
-     - "role1" should match "role_id_generalnews".
-     - "role2" should match "role_id_gameupdates".
-     - "role3" should match "role_id_socialmedia".
+     - "role1" should match the role id of "role_id_generalnews". (Line 18 & 55)
+     - "role2" should match the role id of "role_id_gameupdates". (Line 19 & 56)
+     - "role3" should match the role id of "role_id_socialmedia". (Line 20 & 57)
 
 6. **Role Picker Configuration**
    - Modify the "role_ids" in the **RolePicker.py** script to match the roles you want to assign.
