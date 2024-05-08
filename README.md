@@ -6,6 +6,8 @@
 - Ensure you have Python installed on your system.
 - You'll need a Discord bot token. If you don't have one, create a bot application on the [Discord Developer Portal](https://discord.com/developers/applications).
 - Have the necessary permissions to manage roles and channels on your Discord server.
+- Install `"requirements.txt"` packages.
+- In Terminal install: `"pip install "py-cord[voice]""`
 
 ### Configuration Steps
 
