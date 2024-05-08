@@ -8,7 +8,7 @@ class YoutubeAnounce(commands.Cog):
         self.channels = {
             "Youtube Name": "https://youtube.com/@name",
         }
-        self.discord_channel_id = CHANNEL_ID
+        self.discord_channel_id = DISCORD_CHANNEL_ID
         self.videos = {}
         self.check_videos_loop.start()
 
