@@ -5,7 +5,6 @@
 [![Youtube](https://img.shields.io/badge/Youtube-red?logo=youtube&logo)](https://www.youtube.com/watch?v=uuJgP5pmUHk)
 
 
-
 # Setup
 
 ## Project Setup Guide
@@ -55,3 +54,5 @@
     - Also, replace "@name" with your YouTube handle.
 
 Once all configurations are complete, run the `"main.py"` script. For further assistance, reach out for support on [discord](https://discord.gg/4xwf8F46Pd).
+
+You can see some of the functions of the discord bot on [youtube](https://www.youtube.com/watch?v=uuJgP5pmUHk).
